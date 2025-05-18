@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Career Center - Empowering Future Professionals</title>
+    <meta name="description" content="Dan Career Center offers internship programs in Computer Systems, Networking, Electronics, Software Development, Food & Beverages, and Automobile Technology.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af', // Deep blue
+                        secondary: '#3b82f6', // Medium blue
+                        accent: '#93c5fd', // Light blue
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Dark mode support */
+        .dark {
+            color-scheme: dark;
+        }
+        .dark body {
+            background-color: #181818;
+            color: #e5e7eb;
+        }
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide-up {
+            animation: slideUp 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        /* Slider */
+        .slider-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider-item {
+            flex: 0 0 100%;
+        }
+        /* Page Transitions */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        /* Mobile menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white dark:bg-gray-900 dark:text-white">
+    <!-- Dark mode detection -->
+    <script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="text-primary dark:text-white font-heading font-bold text-2xl" onclick="navigateTo('home')">
+                    Dan Career Center
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors" onclick="navigateTo('home')">Home</a>
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors" onclick="navigateTo('about')">About Us</a>
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors" onclick="navigateTo('programs')">Programs</a>
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors" onclick="navigateTo('apply')">Apply</a>
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors" onclick="navigateTo('contact')">Contact</a>
+            </div>
+            
+            <!-- Mobile Navigation Button -->
+            <button class="md:hidden text-gray-500 dark:text-gray-400 focus:outline-none" id="mobileMenuBtn">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu md:hidden bg-white dark:bg-gray-900 shadow-md" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white py-2 transition-colors" onclick="navigateTo('home')">Home</a>
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white py-2 transition-colors" onclick="navigateTo('about')">About Us</a>
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white py-2 transition-colors" onclick="navigateTo('programs')">Programs</a>
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white py-2 transition-colors" onclick="navigateTo('apply')">Apply</a>
+                <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white py-2 transition-colors" onclick="navigateTo('contact')">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- HOME PAGE -->
+        <section id="home" class="page active">
+            <!-- Hero Section -->
+            <div class="relative h-screen flex items-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <div class="container mx-auto px-4 text-center text-white">
+                    <h1 class="font-heading text-4xl md:text-6xl font-bold mb-4 slide-up">Empowering Future Professionals</h1>
+                    <p class="text-xl md:text-2xl mb-8 fade-in">Gain practical experience in high-demand fields through our internship programs</p>
+                    <button onclick="navigateTo('apply')" class="bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                        Apply for Internship
+                    </button>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 flex justify-center pb-10">
+                    <a href="#internship-programs" class="text-white animate-bounce">
+                        <i class="fas fa-chevron-down text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Internship Programs -->
+            <section id="internship-programs" class="py-20 bg-gray-50 dark:bg-gray-800">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Our Internship Programs</h2>
+                        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Discover hands-on training opportunities in these high-demand fields and kickstart your career with Dan Career Center.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- CSA Card -->
+                        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="font-heading text-xl font-semibold text-gray-800 dark:text-white mb-2">Computer Systems & Architecture</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">Learn the fundamentals of computer hardware, architecture, and systems design with hands-on projects.</p>
+                                <button onclick="showProgramDetails('csa')" class="text-primary dark:text-blue-400 font-medium hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></button>
+                            </div>
+                        </div>
+                        
+                        <!-- NIT Card -->
+                        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="font-heading text-xl font-semibold text-gray-800 dark:text-white mb-2">Networking & Internet Technology</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">Master network infrastructure, protocols, and security in modern enterprise environments.</p>
+                                <button onclick="showProgramDetails('nit')" class="text-primary dark:text-blue-400 font-medium hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></button>
+                            </div>
+                        </div>
+                        
+                        <!-- ETE Card -->
+                        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581092921461-39b0f08156a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="font-heading text-xl font-semibold text-gray-800 dark:text-white mb-2">Electronics & Telecommunication</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">Explore electronic systems, circuit design, and modern telecommunication technologies.</p>
+                                <button onclick="showProgramDetails('ete')" class="text-primary dark:text-blue-400 font-medium hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></button>
+                            </div>
+                        </div>
+                        
+                        <!-- SOD Card -->
+                        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="font-heading text-xl font-semibold text-gray-800 dark:text-white mb-2">Software Development</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">Gain experience in programming languages, frameworks, and modern software development practices.</p>
+                                <button onclick="showProgramDetails('sod')" class="text-primary dark:text-blue-400 font-medium hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></button>
+                            </div>
+                        </div>
+                        
+                        <!-- FBO Card -->
+                        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="font-heading text-xl font-semibold text-gray-800 dark:text-white mb-2">Food & Beverages Operation</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">Learn culinary arts, food service management, and hospitality operations.</p>
+                                <button onclick="showProgramDetails('fbo')" class="text-primary dark:text-blue-400 font-medium hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></button>
+                            </div>
+                        </div>
+                        
+                        <!-- AUT Card -->
+                        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1580983561353-f4daa6b25e66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                            <div class="p-6">
+                                <h3 class="font-heading text-xl font-semibold text-gray-800 dark:text-white mb-2">Automobile Technology</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">Develop skills in automotive repair, diagnostics, and modern vehicle systems.</p>
+                                <button onclick="showProgramDetails('aut')" class="text-primary dark:text-blue-400 font-medium hover:underline">Learn More <i class="fas fa-arrow-right ml-1"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section class="py-20 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Life at Dan Career Center</h2>
+                        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Our interns gain hands-on experience in state-of-the-art facilities under the guidance of industry professionals.</p>
+                    </div>
+                    
+                    <div class="slider-container rounded-lg shadow-xl overflow-hidden">
+                        <div class="slider" id="gallery-slider">
+                            <div class="slider-item">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Interns collaborating" class="w-full h-96 object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Electronics workshop" class="w-full h-96 object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Automotive training" class="w-full h-96 object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Culinary training" class="w-full h-96 object-cover">
+                            </div>
+                        </div>
+                        <button class="absolute top-1/2 left-4 -translate-y-1/2 bg-white dark:bg-gray-800 text-primary dark:text-white p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none" id="prevSlide">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="absolute top-1/2 right-4 -translate-y-1/2 bg-white dark:bg-gray-800 text-primary dark:text-white p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none" id="nextSlide">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="py-20 bg-gray-50 dark:bg-gray-800">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Success Stories</h2>
+                        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Hear from our past interns about their experiences and career growth after completing our programs.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Testimonial 1 -->
+                        <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="h-16 w-16 rounded-full bg-gray-300 overflow-hidden mr-4">
+                                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Sarah Johnson" class="h-full w-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-semibold text-gray-800 dark:text-white">Sarah Johnson</h4>
+                                    <p class="text-primary dark:text-blue-400">Software Development Intern</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300">"The hands-on experience I gained at Dan Career Center was invaluable. Within 3 months of completing my internship, I landed a junior developer position at a tech startup."</p>
+                            <div class="mt-4 flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 2 -->
+                        <div class="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="h-16 w-16 rounded-full bg
