@@ -462,69 +462,75 @@
     </section>
     
     <!-- Application Section -->
-    <section id="apply" class="py-16 md:py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Apply for an Internship</h2>
-                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-lg max-w-3xl mx-auto text-gray-600 dark:text-gray-300">Fill out the form below to apply for our internship programs. Our team will review your application and contact you soon.</p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden reveal">
-                <form action="https://formspree.io/f/mldbvpoe" method="POST">
+<section id="apply" class="py-16 md:py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Apply for an Internship</h2>
+      <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+      <p class="text-lg max-w-3xl mx-auto text-gray-600 dark:text-gray-300">
+        Fill out the form below to apply for our internship programs. Our team will review your application and contact you soon.
+      </p>
+    </div>
 
-                
-                <form id="applicationForm" class="p-6 md:p-10">
-                
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="fullName" class="block text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
-                            <input type="text" id="fullName" name="fullName" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
-                        </div>
-                        <div>
-                            <label for="school" class="block text-gray-700 dark:text-gray-300 mb-2">School Name</label>
-                            <input type="text" id="school" name="school" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
-                        </div>
-                        <div>
-                            <label for="program" class="block text-gray-700 dark:text-gray-300 mb-2">Preferred Program</label>
-                            <select id="program" name="program" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
-                                <option value="">Select a program</option>
-                                <option value="SOD">Software Development (SOD)</option>
-                                <option value="CSA">Computer Systems & Architecture (CSA)</option>
-                                <option value="MMP">Multimedia Production (MMP)</option>
-                                <option value="FBO">Food & Beverages Operation (FBO)</option>
-                                <option value="AUT">Automobile Technology (AUT)</option>
-                                <option value="ETE">Electronics & Telecommunication (ETE)</option>
-                                <option value="NIT">Networking & Internet Technology (NIT)</option>
-                                <option value="ACC">Accounting (ACC)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="startDate" class="block text-gray-700 dark:text-gray-300 mb-2">Preferred Start Date</label>
-                            <input type="date" id="startDate" name="startDate" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2">Why are you interested in this program? (100-200 words)</label>
-                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required></textarea>
-                    </div>
-                    
-                    <div class="flex justify-center">
-                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300">Submit Application</button>
-                    </div>
-                </form>
-            </div>
+    <div class="max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden reveal">
+      <form id="applicationForm" action="https://formspree.io/f/mldbvpoe" method="POST" class="p-6 md:p-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="fullName" class="block text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+            <input type="text" id="fullName" name="fullName" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+          </div>
+
+          <div>
+            <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+          </div>
+
+          <div>
+            <label for="phone" class="block text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+          </div>
+
+          <div>
+            <label for="school" class="block text-gray-700 dark:text-gray-300 mb-2">School Name</label>
+            <input type="text" id="school" name="school" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+          </div>
+
+          <div>
+            <label for="program" class="block text-gray-700 dark:text-gray-300 mb-2">Preferred Program</label>
+            <select id="program" name="program" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+              <option value="">Select a program</option>
+              <option value="SOD">Software Development (SOD)</option>
+              <option value="CSA">Computer Systems & Architecture (CSA)</option>
+              <option value="MMP">Multimedia Production (MMP)</option>
+              <option value="FBO">Food & Beverages Operation (FBO)</option>
+              <option value="AUT">Automobile Technology (AUT)</option>
+              <option value="ETE">Electronics & Telecommunication (ETE)</option>
+              <option value="NIT">Networking & Internet Technology (NIT)</option>
+              <option value="ACC">Accounting (ACC)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="startDate" class="block text-gray-700 dark:text-gray-300 mb-2">Preferred Start Date</label>
+            <input type="date" id="startDate" name="startDate" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+          </div>
         </div>
-    </section>
+
+        <div class="mb-6">
+          <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2">Why are you interested in this program? (100-200 words)</label>
+          <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required></textarea>
+        </div>
+
+        <div class="flex justify-center">
+          <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300">
+            Submit Application
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
 
     <!-- Contact Section -->
     <section id="contact" class="py-16 md:py-20 bg-white dark:bg-gray-900">
