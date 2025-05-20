@@ -3,13 +3,732 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dan Career Center - Training for Secondary Schools</title>
-    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <title>DAN CAREER CENTER - Internship Programs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
-        // Dark mode support
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#5D5CDE',
+                            dark: '#4A49B7',
+                            light: '#7B7AE6'
+                        },
+                        secondary: {
+                            DEFAULT: '#FF6B35',
+                            dark: '#E55A29',
+                            light: '#FF8A5E'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(93, 92, 222, 0.8), rgba(255, 107, 53, 0.8));
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        .animate-slide-in {
+            animation: slide-in 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes slide-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 200px;
+            z-index: 50;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Animations for scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <!-- Dark Mode Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:block"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-900 shadow-md dark:shadow-gray-800 fixed w-full z-40 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#home" class="text-2xl font-bold text-primary dark:text-primary-light">
+                        DAN CAREER CENTER
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menuButton" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light">About Us</a>
+                    <div class="dropdown relative">
+                        <a href="#programs" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light">Programs</a>
+                        <div class="dropdown-content rounded-md shadow-lg bg-white dark:bg-gray-800 mt-2 py-2">
+                            <a href="#sod" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Software Development</a>
+                            <a href="#csa" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Computer Systems & Architecture</a>
+                            <a href="#mmp" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Multimedia Production</a>
+                            <a href="#fbo" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Food & Beverages Operation</a>
+                            <a href="#aut" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Automobile Technology</a>
+                            <a href="#ete" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Electronics & Telecommunication</a>
+                            <a href="#nit" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Networking & Internet Technology</a>
+                            <a href="#acc" class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Accounting</a>
+                        </div>
+                    </div>
+                    <a href="#apply" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light">Apply</a>
+                    <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light">Contact</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="#apply" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full transition duration-300 shadow-md hover:shadow-lg">Apply Now</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="md:hidden hidden mt-3 pb-3">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-gray-700 dark:text-gray-300 py-2 hover:text-primary dark:hover:text-primary-light">Home</a>
+                    <a href="#about" class="text-gray-700 dark:text-gray-300 py-2 hover:text-primary dark:hover:text-primary-light">About Us</a>
+                    <a href="#programs" class="text-gray-700 dark:text-gray-300 py-2 hover:text-primary dark:hover:text-primary-light">Programs</a>
+                    <a href="#apply" class="text-gray-700 dark:text-gray-300 py-2 hover:text-primary dark:hover:text-primary-light">Apply</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 py-2 hover:text-primary dark:hover:text-primary-light">Contact</a>
+                    <a href="#apply" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full transition duration-300 shadow-md hover:shadow-lg text-center mt-2">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-20 md:pt-32 md:pb-24 hero-gradient text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-slide-in" style="animation-delay: 0.1s;">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Shape Your Future with DAN CAREER CENTER</h1>
+                    <p class="text-xl mb-8">Providing quality internships for Technical Secondary Schools in Rwanda</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#programs" class="bg-white text-primary hover:bg-gray-100 px-8 py-3 rounded-full font-semibold text-center transition duration-300 shadow-lg hover:shadow-xl">Explore Programs</a>
+                        <a href="#apply" class="bg-secondary hover:bg-secondary-dark text-white px-8 py-3 rounded-full font-semibold text-center transition duration-300 shadow-lg hover:shadow-xl">Apply Now</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-slide-in" style="animation-delay: 0.3s;">
+                    <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
+                        <div class="p-6 text-gray-800 dark:text-white">
+                            <h3 class="text-2xl font-bold mb-4 text-center">Internship Highlights</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span>Hands-on experience in 8 technical fields</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span>Professional mentorship from industry experts</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span>Located in Kigali, Rwanda's tech hub</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span>Certificate upon completion</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span>Potential for job placement</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 text-center">
+                            <p class="text-gray-700 dark:text-gray-300">Applications open for 2023-2024 academic year</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About DAN CAREER CENTER</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto text-gray-600 dark:text-gray-300">Empowering Rwanda's Technical Secondary School students with practical skills and industry connections.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center space-y-10 md:space-y-0 md:space-x-10 reveal">
+                <div class="md:w-1/2">
+                    <div class="bg-primary rounded-lg h-64 md:h-80 flex items-center justify-center text-white text-6xl">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">DAN CAREER CENTER is committed to bridging the gap between academic learning and industry practice. We provide comprehensive internship programs tailored to Technical Secondary School students in Rwanda, focusing on hands-on experience in various technical fields.</p>
+                    
+                    <h3 class="text-2xl font-bold mb-4">Why Choose Us?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-start">
+                            <div class="mr-4 text-primary">
+                                <i class="fas fa-industry text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Industry Partnerships</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Connections with leading Rwandan companies</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="mr-4 text-primary">
+                                <i class="fas fa-user-tie text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Expert Mentorship</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Learn from professionals in your field</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="mr-4 text-primary">
+                                <i class="fas fa-certificate text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Recognized Certification</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Enhance your resume with our certification</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="mr-4 text-primary">
+                                <i class="fas fa-hands-helping text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Career Support</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Guidance for your future career path</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-16 md:py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Internship Programs</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto text-gray-600 dark:text-gray-300">Discover our specialized internship programs designed for Technical Secondary School students in Rwanda.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                <!-- Software Development -->
+                <div id="sod" class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="bg-primary h-3"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-20 dark:bg-opacity-40 rounded-full flex items-center justify-center text-primary mb-4">
+                            <i class="fas fa-code text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Software Development (SOD)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Learn practical programming skills and software development methodologies in real-world projects.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Web Development</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Mobile Apps</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Coding</span>
+                        </div>
+                        <a href="#apply" class="inline-block text-primary dark:text-primary-light font-semibold hover:underline">Apply for this program <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Computer Systems & Architecture -->
+                <div id="csa" class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="bg-primary h-3"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-20 dark:bg-opacity-40 rounded-full flex items-center justify-center text-primary mb-4">
+                            <i class="fas fa-microchip text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Computer Systems & Architecture (CSA)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Gain hands-on experience with computer hardware, system design, and architecture principles.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Hardware</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">System Design</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Architecture</span>
+                        </div>
+                        <a href="#apply" class="inline-block text-primary dark:text-primary-light font-semibold hover:underline">Apply for this program <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Multimedia Production -->
+                <div id="mmp" class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="bg-primary h-3"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-20 dark:bg-opacity-40 rounded-full flex items-center justify-center text-primary mb-4">
+                            <i class="fas fa-film text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Multimedia Production (MMP)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Develop skills in digital media creation, editing, and production techniques.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Video Editing</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Graphics</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Animation</span>
+                        </div>
+                        <a href="#apply" class="inline-block text-primary dark:text-primary-light font-semibold hover:underline">Apply for this program <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Food & Beverages Operation -->
+                <div id="fbo" class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="bg-primary h-3"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-20 dark:bg-opacity-40 rounded-full flex items-center justify-center text-primary mb-4">
+                            <i class="fas fa-utensils text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Food & Beverages Operation (FBO)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Learn culinary arts, food service management, and hospitality principles.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Culinary</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Service</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Management</span>
+                        </div>
+                        <a href="#apply" class="inline-block text-primary dark:text-primary-light font-semibold hover:underline">Apply for this program <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Automobile Technology -->
+                <div id="aut" class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="bg-primary h-3"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-20 dark:bg-opacity-40 rounded-full flex items-center justify-center text-primary mb-4">
+                            <i class="fas fa-car text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Automobile Technology (AUT)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Gain practical experience in vehicle mechanics, diagnostics, and repair technologies.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Mechanics</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Diagnostics</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Repair</span>
+                        </div>
+                        <a href="#apply" class="inline-block text-primary dark:text-primary-light font-semibold hover:underline">Apply for this program <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Electronics & Telecommunication -->
+                <div id="ete" class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="bg-primary h-3"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-20 dark:bg-opacity-40 rounded-full flex items-center justify-center text-primary mb-4">
+                            <i class="fas fa-satellite-dish text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Electronics & Telecommunication (ETE)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Learn about electronic systems, telecommunication networks, and signal processing.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Circuitry</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Communication</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Systems</span>
+                        </div>
+                        <a href="#apply" class="inline-block text-primary dark:text-primary-light font-semibold hover:underline">Apply for this program <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Networking & Internet Technology -->
+                <div id="nit" class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="bg-primary h-3"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-20 dark:bg-opacity-40 rounded-full flex items-center justify-center text-primary mb-4">
+                            <i class="fas fa-network-wired text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Networking & Internet Technology (NIT)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Master network configurations, internet protocols, and cybersecurity fundamentals.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Networking</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Security</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Protocols</span>
+                        </div>
+                        <a href="#apply" class="inline-block text-primary dark:text-primary-light font-semibold hover:underline">Apply for this program <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Accounting -->
+                <div id="acc" class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="bg-primary h-3"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-primary bg-opacity-20 dark:bg-opacity-40 rounded-full flex items-center justify-center text-primary mb-4">
+                            <i class="fas fa-calculator text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Accounting (ACC)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Develop practical skills in financial accounting, bookkeeping, and business finance.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Finance</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Bookkeeping</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">Analysis</span>
+                        </div>
+                        <a href="#apply" class="inline-block text-primary dark:text-primary-light font-semibold hover:underline">Apply for this program <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal">
+                <div>
+                    <div class="text-4xl font-bold mb-2" id="stats-students">0</div>
+                    <p class="text-lg">Students Trained</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2" id="stats-partners">0</div>
+                    <p class="text-lg">Industry Partners</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2" id="stats-programs">0</div>
+                    <p class="text-lg">Internship Programs</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2" id="stats-placement">0</div>
+                    <p class="text-lg">Placement Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Application Section -->
+    <section id="apply" class="py-16 md:py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Apply for an Internship</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto text-gray-600 dark:text-gray-300">Fill out the form below to apply for our internship programs. Our team will review your application and contact you soon.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden reveal">
+                <form action="https://formspree.io/f/mnqwyxyz" method="POST">
+
+                
+                <form id="applicationForm" class="p-6 md:p-10">
+                
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="fullName" class="block text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                        </div>
+                        <div>
+                            <label for="school" class="block text-gray-700 dark:text-gray-300 mb-2">School Name</label>
+                            <input type="text" id="school" name="school" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                        </div>
+                        <div>
+                            <label for="program" class="block text-gray-700 dark:text-gray-300 mb-2">Preferred Program</label>
+                            <select id="program" name="program" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                                <option value="">Select a program</option>
+                                <option value="SOD">Software Development (SOD)</option>
+                                <option value="CSA">Computer Systems & Architecture (CSA)</option>
+                                <option value="MMP">Multimedia Production (MMP)</option>
+                                <option value="FBO">Food & Beverages Operation (FBO)</option>
+                                <option value="AUT">Automobile Technology (AUT)</option>
+                                <option value="ETE">Electronics & Telecommunication (ETE)</option>
+                                <option value="NIT">Networking & Internet Technology (NIT)</option>
+                                <option value="ACC">Accounting (ACC)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="startDate" class="block text-gray-700 dark:text-gray-300 mb-2">Preferred Start Date</label>
+                            <input type="date" id="startDate" name="startDate" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2">Why are you interested in this program? (100-200 words)</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required></textarea>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg max-w-3xl mx-auto text-gray-600 dark:text-gray-300">Have questions? Reach out to our team for more information about our internship programs.</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-10 max-w-6xl mx-auto reveal">
+                <div class="lg:w-1/2 bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-6">Get In Touch</h3>
+                        <div class="flex items-start mb-4">
+                            <div class="mr-4 text-primary">
+                                <i class="fas fa-map-marker-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Location</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Kigali, Rwanda</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-4">
+                            <div class="mr-4 text-primary">
+                                <i class="fas fa-envelope text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Email</h4>
+                                <p class="text-gray-600 dark:text-gray-300">dancareercenter01@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-4">
+                            <div class="mr-4 text-primary">
+                                <i class="fas fa-phone text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Phone</h4>
+                                <p class="text-gray-600 dark:text-gray-300">+250 783 860 078</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="mr-4 text-primary">
+                                <i class="fas fa-clock text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Office Hours</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://facebook.com" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" class="w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700 transition duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" class="w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 bg-white dark:bg-gray-900 rounded-lg shadow-md p-8">
+                    <h3 class="text-2xl font-bold mb-6">Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="mb-4">
+                            <label for="contactName" class="block text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                            <input type="text" id="contactName" name="contactName" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactEmail" class="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="block text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="contactMessage" class="block text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white text-base" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition duration-300">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-1/3 mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-6">DAN CAREER CENTER</h3>
+                    <p class="text-gray-400 mb-4 max-w-xs">Empowering Rwanda's Technical Secondary School students with practical skills and industry connections.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/3 mb-8 md:mb-0">
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#programs" class="text-gray-400 hover:text-white transition duration-300">Internship Programs</a></li>
+                        <li><a href="#apply" class="text-gray-400 hover:text-white transition duration-300">Apply Now</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">Kigali, Rwanda</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">dancareercenter01@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">+250 783 860 078</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">Mon - Fri: 8:00 AM - 5:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-10 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2023 DAN CAREER CENTER. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modals -->
+    <div id="applicationSuccess" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md w-full">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-500 text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Application Submitted!</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-6">Thank you for applying to DAN CAREER CENTER. We'll review your application and contact you soon.</p>
+                <button id="closeApplicationSuccess" class="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="contactSuccess" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md w-full">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-500 text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Message Sent!</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-6">Thank you for contacting DAN CAREER CENTER. We'll get back to you as soon as possible.</p>
+                <button id="closeContactSuccess" class="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary hover:bg-primary-dark text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-40 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Dark Mode Detection and Toggle
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
         }
+        
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
             if (event.matches) {
                 document.documentElement.classList.add('dark');
@@ -17,281 +736,130 @@
                 document.documentElement.classList.remove('dark');
             }
         });
-
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#722F37', // Maroon/burgundy color from the logo
-                        secondary: '#5D5CDE',
-                        dark: '#181818',
+        
+        // Dark Mode Toggle Button
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+        
+        // Mobile Menu Toggle
+        document.getElementById('menuButton').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+        
+        // Form Submissions
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Form validation and submission logic would go here
+            document.getElementById('applicationSuccess').classList.remove('hidden');
+        });
+        
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Form validation and submission logic would go here
+            document.getElementById('contactSuccess').classList.remove('hidden');
+        });
+        
+        // Close Modals
+        document.getElementById('closeApplicationSuccess').addEventListener('click', function() {
+            document.getElementById('applicationSuccess').classList.add('hidden');
+        });
+        
+        document.getElementById('closeContactSuccess').addEventListener('click', function() {
+            document.getElementById('contactSuccess').classList.add('hidden');
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Run on page load
+        
+        // Animate Stats Numbers
+        function animateStats() {
+            const statsElements = [
+                { id: 'stats-students', target: 500 },
+                { id: 'stats-partners', target: 25 },
+                { id: 'stats-programs', target: 8 },
+                { id: 'stats-placement', target: 85 }
+            ];
+            
+            statsElements.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                let current = 0;
+                const step = stat.target / 40; // Divide by number of animation frames
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= stat.target) {
+                        current = stat.target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.round(current);
+                    if (stat.id === 'stats-placement') {
+                        element.textContent += '%';
+                    }
+                }, 30);
+            });
+        }
+        
+        // Trigger animation when stats section is visible
+        const statsObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+        
+        statsObserver.observe(document.querySelector('#stats-students').parentElement.parentElement);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80, // Account for fixed navbar
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu when a link is clicked
+                    if (!document.getElementById('mobileMenu').classList.contains('hidden')) {
+                        document.getElementById('mobileMenu').classList.add('hidden');
                     }
                 }
-            }
-        }
+            });
+        });
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        /* Logo animation */
-        .logo-hover:hover {
-            transform: scale(1.05);
-            transition: all 0.3s ease;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #722F37;
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #5a252c;
-        }
-        
-        .dark ::-webkit-scrollbar-track {
-            background: #2d2d2d;
-        }
-        
-        /* Card hover effect */
-        .course-card {
-            transition: all 0.3s ease;
-        }
-        
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .course-card:hover {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-    </style>
-    <!-- Favicon generated from logo colors -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzcyMkYzNyIgZD0iTTEyIDJDNi40NyAyIDIgNi40NyAyIDEyUzYuNDcgMjIgMTIgMjJTMjIgMTcuNTMgMjIgMTJTMTcuNTMgMiAxMiAyWk0xNS40MSAxNi41OUMxNC45IDE3LjEgMTQuMSAxNy41IDEzLjE4IDE3LjVDMTEuNDMgMTcuNSAxMCAxNi4wNyAxMCAxNC4zMkMxMCAxMi41NyAxMS40MyAxMS4xNCAxMy4xOCAxMS4xNEMxNCAxMS4xNCAxNC43MiAxMS40NiAxNS4yNiAxMS45N0wxNi4yMSAxMUMxNS40MSAxMC4wOCAxNC4zMyA5LjUgMTMuMDcgOS41QzEwLjUgOS41IDguNSAxMS41IDguNSAxNEMwLjUgMTYuNSAxMC41IDE4LjUgMTMgMTguNUMxNC40IDE4LjUgMTUuNzUgMTcuOSAxNi42MiAxNi45TDE1LjQxIDE2LjU5WiIvPjwvc3ZnPg==">
-</head>
-<body class="bg-white dark:bg-dark text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white dark:bg-dark shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <!-- Logo SVG created based on the image -->
-                <div class="logo-hover w-12 h-12 mr-3">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                        <path d="M100 0L173.2 50V150L100 200L26.8 150V50L100 0Z" fill="#722F37"/>
-                        <path d="M60 70V130H95C105 130 115 120 115 105C115 90 105 80 95 80H75V70H60Z" fill="white"/>
-                        <path d="M75 95H90C92 95 100 95 100 105C100 115 92 115 90 115H75V95Z" fill="#722F37"/>
-                        <text x="120" y="105" font-family="Arial" font-size="12" fill="white">an</text>
-                        <rect x="145" y="70" width="15" height="10" fill="white"/>
-                    </svg>
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold text-primary dark:text-white">Dan Career Center</h1>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Training for Secondary Schools</p>
-                </div>
-            </div>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#home" class="hover:text-primary dark:hover:text-secondary font-medium">Home</a>
-                <a href="#programs" class="hover:text-primary dark:hover:text-secondary font-medium">Programs</a>
-                <a href="#facilities" class="hover:text-primary dark:hover:text-secondary font-medium">Facilities</a>
-                <a href="#about" class="hover:text-primary dark:hover:text-secondary font-medium">About</a>
-                <a href="#contact" class="hover:text-primary dark:hover:text-secondary font-medium">Contact</a>
-            </nav>
-            <button id="mobileMenuButton" class="md:hidden text-gray-800 dark:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-        <!-- Mobile menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-dark shadow-lg">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-                <a href="#home" class="hover:text-primary dark:hover:text-secondary font-medium">Home</a>
-                <a href="#programs" class="hover:text-primary dark:hover:text-secondary font-medium">Programs</a>
-                <a href="#facilities" class="hover:text-primary dark:hover:text-secondary font-medium">Facilities</a>
-                <a href="#about" class="hover:text-primary dark:hover:text-secondary font-medium">About</a>
-                <a href="#contact" class="hover:text-primary dark:hover:text-secondary font-medium">Contact</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-r from-primary to-primary/80 text-white py-16">
-        <div class="container mx-auto px-4 md:flex items-center">
-            <div class="md:w-1/2 mb-8 md:mb-0">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Empowering Future Tech Leaders</h2>
-                <p class="text-lg mb-6">Specialized training in Computer Systems and Multimedia Production for secondary school students.</p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#programs" class="bg-white text-primary hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-center transition duration-300">
-                        Explore Programs
-                    </a>
-                    <a href="#contact" class="bg-transparent hover:bg-white/20 border-2 border-white font-bold py-3 px-6 rounded-lg text-center transition duration-300">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <!-- Larger logo for hero section -->
-                <div class="w-64 h-64">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                        <path d="M100 0L173.2 50V150L100 200L26.8 150V50L100 0Z" fill="#722F37"/>
-                        <path d="M60 70V130H95C105 130 115 120 115 105C115 90 105 80 95 80H75V70H60Z" fill="white"/>
-                        <path d="M75 95H90C92 95 100 95 100 105C100 115 92 115 90 115H75V95Z" fill="#722F37"/>
-                        <text x="120" y="105" font-family="Arial" font-size="12" fill="white">an</text>
-                        <rect x="145" y="70" width="15" height="10" fill="white"/>
-                        <text x="125" y="145" font-family="Arial" font-weight="bold" font-size="18" fill="white">CAREER CENTER</text>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Programs Section -->
-    <section id="programs" class="py-16 bg-gray-100 dark:bg-gray-900">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-primary dark:text-white text-center mb-12">Our Training Programs</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Computer Systems Program -->
-                <div class="course-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="bg-primary h-2"></div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <h3 class="text-xl font-bold ml-3">Computer Systems</h3>
-                        </div>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">Comprehensive training in computer hardware, operating systems, networking, and system administration.</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">System Architecture</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Network Configuration</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Operating Systems</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Cybersecurity Basics</span>
-                            </li>
-                        </ul>
-                        <a href="#contact" class="block text-center bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Learn More</a>
-                    </div>
-                </div>
-                
-                <!-- Multimedia Production Program -->
-                <div class="course-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="bg-primary h-2"></div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                            <h3 class="text-xl font-bold ml-3">Multimedia Production</h3>
-                        </div>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">Creative training in digital media production, including video, audio, and interactive content.</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Video Editing</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Audio Production</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Graphic Design</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Animation Basics</span>
-                            </li>
-                        </ul>
-                        <a href="#contact" class="block text-center bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Learn More</a>
-                    </div>
-                </div>
-                
-                <!-- Combined Program -->
-                <div class="course-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="bg-primary h-2"></div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-                            </svg>
-                            <h3 class="text-xl font-bold ml-3">Integrated Tech Program</h3>
-                        </div>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">Comprehensive program combining both computer systems and multimedia production for a well-rounded skill set.</p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Web Development</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Mobile App Development</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Game Development</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-2">Digital Media Projects</span>
-                            </li>
-                        </ul>
-                        <a href="#contact" class="block text-center bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Facilities Section -->
-    <section id="facilities" class="py-16">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold
+</body>
+</html>
